@@ -10,7 +10,7 @@ class Scrapper:
     def curlSite(self):
         global FILE_PATH
         if os.path.exists(FILE_PATH):
-            
+            print("Not done yet")
         sp.run(["mkdir","tmp"])
         sp.run(["curl", f"{self.url}", ">", "tmp/page.txt"])
         
