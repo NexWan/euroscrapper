@@ -34,7 +34,7 @@ def printWelcome():
 if __name__ == '__main__':
     if(plat.system() != 'Linux'):
         print(f"You should run this using linux, you can use WSL as {plat.system()} is not yet supported")
-        SystemExit(1)
+        exit(1)
     printWelcome()
     scp = Scrapper("https://www.eurogamer.net/games/the-legend-of-zelda-tears-of-the-kingdom")
     scp.curlSite()
