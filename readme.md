@@ -9,11 +9,11 @@ and I didn't found any scrapper so I decided to create mine xd.
 - ~~Curl the website into a html file.~~
 - ~~Scrape the website.~~
 - - ~~Get platforms~~
-- - Get Title
-- - Get release
-- - Get Genres
-- - Get Publishers
-- - Get Franchise
+- - ~~Get Title~~
+- - ~~Get release~~
+- - ~~Get Genres~~
+- - ~~Get Publishers~~
+- - ~~Get Franchise~~
 - Generate a JSON file 
 - Generate e CSV file.
 
