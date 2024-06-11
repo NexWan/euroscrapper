@@ -18,7 +18,9 @@ and I didn't found any scrapper so I decided to create mine xd.
 - Generate e CSV file.
 
 ## How to install  
-At the moment this scrapper just works with any Unix OS, Windows is not yet supported.  
+~~At the moment this scrapper just works with any Unix OS, Windows is not yet supported. ~~
+Apparently it works with windows (?)   
+I'm not sure yet since I've only tested it on windows 11 and it worked fine.
 In order to install you need to do 
 ```sh
 git clone https://github.com/NexWan/euroscrapper

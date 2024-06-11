@@ -109,7 +109,7 @@ class Scrapper:
         if os.path.exists(self.FILE_PATH):
             print("Not done yet")
         if not os.path.exists("tmp"):
-            sp.run(["mkdir","tmp"])
+            os.makedirs("tmp")
         with open(self.FILE_PATH, "w") as file:
             sp.run(["curl", self.url], stdout=file)
         if os.path.exists(self.FILE_PATH):
