@@ -1,6 +1,7 @@
 import subprocess as sp
 import os
 from bs4 import BeautifulSoup
+import json
 
 class Scrapper:
     FILE_PATH = 'tmp/file.html'
@@ -17,7 +18,7 @@ class Scrapper:
         # Find the h1 title
         title = soup.find('h1', class_="page_title")
         if title:
-            print(f"Title: {title.text.strip()}")
+            return title.text.strip()
             
     def getFranchise(self, span):
         # Find the <span> element with the text "Franchise"
@@ -27,13 +28,14 @@ class Scrapper:
             franchise_a = franchise_span.find_next_sibling('a')
             if franchise_a:
                 print("Found <a> next to 'Franchise' <span>. Contents:")
-                print(franchise_a.text.strip())
+                return franchise_a.text.strip()
             else:
                 print("No <a> found next to the 'Franchise' <span>")
         else:
             print("No <span> with the name 'Franchise' found")
             
     def getPublishers(self, soup):
+        list = []
         # Find the <span> element with the text "Publishers"
         publisher_span = soup.find('span', string="Publishers")
         # Find the next sibling <ul> of the <span> element
@@ -42,13 +44,15 @@ class Scrapper:
             if publisher_ul:
                 print("Found <ul> next to 'Publishers' <span>. Contents:")
                 for li in publisher_ul.find_all('li'):
-                    print(li.text.strip())
+                    list.append(li.text.strip())
+                return list
             else:
                 print("No <ul> found next to the 'Publishers' <span>")
         else:
             print("No <span> with the name 'Publishers' found")
             
     def getGenres(self,soup):
+        list = []
         # Find the <span> element with the text "Genres"
         genre_span = soup.find('span', string="Genres")
         # Find the next sibling <ul> of the <span> element
@@ -57,7 +61,8 @@ class Scrapper:
             if genre_ul:
                 print("Found <ul> next to 'Genres' <span>. Contents:")
                 for li in genre_ul.find_all('li'):
-                    print(li.text.strip())
+                    list.append(li.text.strip())
+                return list
             else:
                 print("No <ul> found next to the 'Genres' <span>")
         else:
@@ -71,13 +76,14 @@ class Scrapper:
             release_time = release_span.find_next_sibling()
             if release_time:
                 print("Found time value next to 'Release Date' <span>. Contents:")
-                print(release_time.text.strip())
+                return release_time.text.strip()
             else:
                 print("No <time> found next to the 'Release Date' <span>")
         else:
             print("No <span> with the name 'Release Date' found")
         
     def getPlatforms(self, soup):
+        list = []
         # Find the <span> element with the text "Platforms"
         platform_span = soup.find('span', string="Platforms")
         # Find the next sibling <ul> of the <span> element
@@ -86,7 +92,8 @@ class Scrapper:
             if platform_ul:
                 print("Found <ul> next to 'Platforms' <span>. Contents:")
                 for li in platform_ul.find_all('li'):
-                    print(li.text.strip())
+                    list.append(li.text.strip())
+                return list
             else:
                 print("No <ul> found next to the 'Platforms' <span>")
         else:
@@ -96,12 +103,14 @@ class Scrapper:
         print("Scraping the site")
         with open(self.FILE_PATH) as file:
             soup = BeautifulSoup(file, 'html.parser')
-            self.getTitle(soup)
-            self.getPlatforms(soup)
-            self.getRelease(soup)
-            self.getGenres(soup)
-            self.getPublishers(soup)
-            self.getFranchise(soup)
+            title = self.getTitle(soup)
+            platforms = self.getPlatforms(soup)
+            release = self.getRelease(soup)
+            genres = self.getGenres(soup)
+            publishers = self.getPublishers(soup)
+            franchise = self.getFranchise(soup)
+        json.dump({'title': title, 'content': {"platforms": platforms, "release": release, "genres": genres, "publishers": publishers, "franchise": franchise}}, open("tmp/data.json", "w"), indent=4)        
+        print("Data saved to tmp/data.json")
         
         
     def curlSite(self):
