@@ -48,3 +48,8 @@ Then activate it in your terminal
 source env/bin/activate
 ```
 And you should be able to use the pip install command
+
+
+### DEMO   
+
+<img src="https://i.imgur.com/E7gIkyf.gif">
