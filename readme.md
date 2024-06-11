@@ -16,6 +16,7 @@ and I didn't found any scrapper so I decided to create mine xd.
 - - ~~Get Franchise~~
 - ~~Generate a JSON file ~~
 - Generate e CSV file.
+- Add the option to do it with multiple links.
 
 ### NOTE FOR WINDOWS
 I'm not entirely sure if this works in windows, it worked in windows 11 but idk about the rest lol
