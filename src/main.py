@@ -52,8 +52,8 @@ def manageExit():
     
     
 if __name__ == '__main__':
-    if(plat.system() != 'Linux'):
-        print(f"You should run this using linux, you can use WSL as {plat.system()} is not yet supported")
+    if(plat.system() == 'Windows'):
+        print(f"You should run this using linux or macos, you can use WSL as {plat.system()} is not yet supported")
         exit(1)
     printWelcome()
     while True:
