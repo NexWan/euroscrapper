@@ -14,7 +14,7 @@ and I didn't found any scrapper so I decided to create mine xd.
 - - ~~Get Genres~~
 - - ~~Get Publishers~~
 - - ~~Get Franchise~~
-- ~~Generate a JSON file ~~
+- ~~Generate a JSON file~~
 - Generate e CSV file.
 - Add the option to do it with multiple links.
 
