@@ -28,4 +28,9 @@ Go into the src folder and do
 python main.py
 ```
 
+You are going to need to install the following dependencie with pip:
+```sh
+pip install beautifulsoup4
+```
+
 
