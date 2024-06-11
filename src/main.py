@@ -1,6 +1,6 @@
 import platform as plat
 from Scrapper import *
-
+from colors import *
 
 def printWelcome():
     logo = """                              
@@ -24,7 +24,7 @@ def printWelcome():
        @...........................................................................................:
          *=................................................:=#%#=.+-.:+*#*%@@%@@##+:
               +%*=-:::::.....:=-:::::----=+#%@@@#%##%%+ """
-    print(f"{logo} \n\n\n\n{('Welcome to euroScrapper!').center(100)}")
+    print(f"{colors.pink_color}{logo}{colors.reset_color}" + f"\n\n\n\n{colors.green_color}{('Welcome to euroScrapper!').center(100)}{colors.reset_color}")
     
     
 def printMenu():
@@ -40,7 +40,8 @@ def checkSite(url):
         print("Invalid url, please enter a valid url")
         return False
     if "eurogamer.net/games" not in url:
-        print("Invalid url, please enter a valid eurogamer url")
+        print("Invalid url, please enter a valid eurogamer url" + 
+              " (e.g. https://www.eurogamer.net/games/something....)")
         return False
     return True
 
