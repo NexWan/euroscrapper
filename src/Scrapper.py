@@ -8,6 +8,11 @@ class Scrapper:
     def __init__(self, url):
         self.url = url
         
+    def deleteFile(self):
+        if os.path.exists(self.FILE_PATH):
+            os.remove(self.FILE_PATH)
+            print(f"Deleted {self.FILE_PATH}")
+        
     def getPlatforms(self, soup):
                 # Find the <span> element with the text "Platforms"
         platform_span = soup.find('span', string="Platforms")

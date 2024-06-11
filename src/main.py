@@ -27,7 +27,6 @@ def printWelcome():
     print(f"{logo} \n\n\n\n{('Welcome to euroScrapper!').center(100)}")
     
     
-    
 def printMenu():
     print(f"""
     1. Scrape a site
@@ -44,6 +43,11 @@ def checkSite(url):
         print("Invalid url, please enter a valid eurogamer url")
         return False
     return True
+
+def manageExit():
+    Scrapper("").deleteFile()
+    print("Exiting...")
+    exit(0)
     
     
 if __name__ == '__main__':
@@ -60,7 +64,7 @@ if __name__ == '__main__':
             scrapper = Scrapper(url)
             scrapper.curlSite()
         elif choice == '2':
-            print("Exiting...")
+            manageExit()
             break
         else:
             print("Invalid choice")
