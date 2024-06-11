@@ -17,10 +17,12 @@ and I didn't found any scrapper so I decided to create mine xd.
 - Generate a JSON file 
 - Generate e CSV file.
 
+### NOTE FOR WINDOWS
+I'm not entirely sure if this works in windows, it worked in windows 11 but idk about the rest lol
+
 ## How to install  
-~~At the moment this scrapper just works with any Unix OS, Windows is not yet supported. ~~
-Apparently it works with windows (?)   
-I'm not sure yet since I've only tested it on windows 11 and it worked fine.
+
+
 In order to install you need to do 
 ```sh
 git clone https://github.com/NexWan/euroscrapper
@@ -35,7 +37,7 @@ You are going to need to install the following dependencie with pip:
 pip install beautifulsoup4
 ```
 
-### NOTE 
+### NOTE FOR ARCH
 If you are using Arch Linux is most likely that you are going to need to create your own venv with python in order to run the program.
 ```sh
 python3 -m venv env
