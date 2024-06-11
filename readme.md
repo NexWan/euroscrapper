@@ -33,4 +33,13 @@ You are going to need to install the following dependencie with pip:
 pip install beautifulsoup4
 ```
 
-
+### NOTE 
+If you are using Arch Linux is most likely that you are going to need to create your own venv with python in order to run the program.
+```sh
+python3 -m venv env
+```
+Then activate it in your terminal
+```sh
+source env/bin/activate
+```
+And you should be able to use the pip install command
