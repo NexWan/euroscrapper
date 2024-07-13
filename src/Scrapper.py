@@ -6,8 +6,9 @@ import json
 class Scrapper:
     FILE_PATH = 'tmp/file.html'
     
-    def __init__(self, url):
+    def __init__(self, url, multi=False):
         self.url = url
+        self.multi = multi
         
     def deleteFile(self):
         if os.path.exists(self.FILE_PATH):
@@ -109,9 +110,47 @@ class Scrapper:
             genres = self.getGenres(soup)
             publishers = self.getPublishers(soup)
             franchise = self.getFranchise(soup)
-        json.dump({'title': title, 'content': {"platforms": platforms, "release": release, "genres": genres, "publishers": publishers, "franchise": franchise}}, open("tmp/data.json", "w"), indent=4)        
-        print("Data saved to tmp/data.json")
+            self.writeToJson(title, platforms, release, genres, publishers, franchise)
         
+    
+    def writeToJson(self, title, platforms, release, genres, publishers, franchise):
+        file_path = "tmp/data.json"
+        game_data = {'title': title, 'content': {"platforms": platforms, "release": release, "genres": genres, "publishers": publishers, "franchise": franchise}}
+        
+        # Check if the file exists and is not empty
+        if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
+            with open(file_path, 'r+', encoding='utf-8') as file:
+                data = json.load(file)
+                # Append the new game data to the 'games' array
+                data['games'].append(game_data)
+                # Move the file pointer to the beginning of the file
+                file.seek(0)
+                # Write the updated JSON data
+                json.dump(data, file, indent=4)
+                # Truncate the file to the new size
+                file.truncate()
+        else:
+            # If the file doesn't exist or is empty, create a new structure
+            with open(file_path, 'w', encoding='utf-8') as file:
+                json.dump({'games': [game_data]}, file, indent=4)
+    
+        print(f"Data of game {title} saved to {file_path}")
+
+    def deleteJson(self):
+        if os.path.exists("tmp/data.json"):
+            os.remove("tmp/data.json")
+            print("Deleted tmp/data.json")
+
+    def initialCheck(self):
+        if(os.path.exists("tmp/data.json")):
+            print("Data file already exists, do you want to overwrite it? (y/n)")
+            choice = input()
+            if choice == "y":
+                self.deleteJson()
+                json.dump({'games': []}, open("tmp/data.json", "w"), indent=4)
+            else:
+                print("Exiting...")
+                exit(0)
         
     def curlSite(self):
         print(f"Fetching {self.url}")

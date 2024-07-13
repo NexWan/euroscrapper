@@ -29,8 +29,9 @@ def printWelcome():
     
 def printMenu():
     print(f"""
-    1. Scrape a site
-    2. Exit
+    1. Scrape a site (just one link)
+    2. Scrape multiple sites
+    3. Exit
     """)
     choice = input("Enter your choice: ")
     return choice
@@ -46,7 +47,7 @@ def checkSite(url):
     return True
 
 def manageExit():
-    Scrapper("").deleteFile()
+    Scrapper("",False).deleteFile()
     print("Exiting...")
     exit(0)
     
@@ -56,15 +57,29 @@ if __name__ == '__main__':
         #print(f"You should run this using linux or macos, you can use WSL as {plat.system()} is not yet supported")
        # exit(1)
     printWelcome()
+    Scrapper("",False).initialCheck()
     while True:
         choice = printMenu()
         if choice == '1':
             url = input("Enter the url to scrape: ")
             if not checkSite(url):
                 continue
-            scrapper = Scrapper(url)
+            scrapper = Scrapper(url,False)
             scrapper.curlSite()
         elif choice == '2':
+            print("Enter the urls to scrape, one per line. Enter 'done' to finish")
+            urls = []
+            while True:
+                url = input()
+                if url == 'done':
+                    break
+                if not checkSite(url):
+                    continue
+                urls.append(url)
+            for url in urls:
+                scrapper = Scrapper(url,True)
+                scrapper.curlSite()
+        elif choice == '3':
             manageExit()
             break
         else:
